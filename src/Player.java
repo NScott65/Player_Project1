@@ -19,7 +19,7 @@ public class Player {
         this.name = ("P" + pCount);
     }
 
-    public Player(Scanner in, String name, int x, int y, int z ){
+    public Player(String name, int x, int y, int z ){
         this.name = name;
         this.x = x;
         this.y = y;
@@ -28,7 +28,8 @@ public class Player {
         this.direction = 1;
     }
 
-    public Player(Scanner in, String name, int x, int y, int z, int hp, int direction){
+    public Player(String name, int x, int y, int z, int hp, int direction){
+        String d = "";
         this.name = name;
         this.x = x;
         this.y = y;
@@ -37,9 +38,9 @@ public class Player {
         this.direction = direction;
     }
 
-   public int getX(){
-       return x;
-   }
+    public int getX(){
+        return x;
+    }
 
     public int getY(){
         return y;
@@ -57,7 +58,7 @@ public class Player {
     }
 
     public String getName(){
-       return name;
+        return name;
     }
 
     public int getpCount(){
@@ -66,7 +67,12 @@ public class Player {
 
 
     public String toString(){
-        String out = ("Name: " + name + "\nHP: " + hp + "\nX: " + x + " Y: " + y + " Z: " + z);
+        String out = "";
+        if(direction >= 1 && direction <= 6){
+            out = ("Name: " + name + "\nHP: " + hp + "\nX: " + x + " Y: " + y + " Z: " + z + "\nDirection: " + direction);
+        }else{
+            out = ("Name: " + name + "\nHP: " + hp + "\nX: " + x + " Y: " + y + " Z: " + z);
+        }
         return out;
     }
 
@@ -97,6 +103,33 @@ public class Player {
         if(direction == 1){
             this.x += unit;
         }
-
+        else if(direction == 2){
+            this.x -= unit;
+        }
+        else if(direction == 3){
+            this.y += unit;
+        }
+        else if(direction == 4){
+            this.y -= unit;
+        }
+        else if(direction == 5){
+            this.z += unit;
+        }
+        else if(direction == 6){
+            this.z -= unit;
+        }
+    }
+    public void Tp(int x,int y, int z){
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+    public void TpPlayer(Player player){
+        this.x = player.x;
+        this.y = player.y;
+        this.z = player.z;
+    }
+    public void attack(Player player, int damage){
+        player.hp -= damage;
     }
 }
